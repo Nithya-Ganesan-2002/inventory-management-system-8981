@@ -2,8 +2,7 @@ import { component$, Slot } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { Navbar } from "~/components/ui/Navbar";
 import { Sidebar } from "~/components/ui/Sidebar";
-import { useAuthProvider, useAuth } from "~/stores/auth";
-import { useDataProvider } from "~/stores/data";
+import { useAuth } from "~/stores/auth";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   cacheControl({ maxAge: 5, staleWhileRevalidate: 60 * 60 });
@@ -12,8 +11,6 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 // PUBLIC_INTERFACE
 export default component$(() => {
   /** Application shell layout: sidebar + navbar + content */
-  useAuthProvider();
-  useDataProvider();
   const auth = useAuth();
 
   return (

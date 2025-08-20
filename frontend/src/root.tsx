@@ -6,6 +6,8 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
+import { useAuthProvider } from "./stores/auth";
+import { useDataProvider } from "./stores/data";
 
 import "./global.css";
 
@@ -16,6 +18,11 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+
+  // Register global providers high in the tree so all routes have access to context.
+  // Hooks must be called at the top of the component, not inside JSX.
+  useAuthProvider();
+  useDataProvider();
 
   return (
     <QwikCityProvider>
