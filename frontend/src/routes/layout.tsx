@@ -12,8 +12,9 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 // PUBLIC_INTERFACE
 export default component$(() => {
   useStyles$(styles);
+  // Wrap all pages with a main container. App routes provide their own shell.
   return (
-    <main>
+    <main class="min-h-screen">
       <Slot />
     </main>
   );
